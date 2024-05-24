@@ -20,5 +20,13 @@ namespace tabuleiro
             return pecas[linha, coluna];
         }
         
+        //dar a posição para a peça
+        public void colcocarPeca(Peca p, Posicao pos) 
+        
+        {
+            pecas[pos.linha, pos.coluna] = p;
+            p.posicao = pos;
+        }
+
     }
 }
