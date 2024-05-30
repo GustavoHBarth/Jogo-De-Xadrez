@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Xml.Serialization;
 using tabuleiro;
 
 namespace xadrez
@@ -6,8 +7,8 @@ namespace xadrez
     internal class PartidaDeXadrez
     {
         public Tabuleiro tab { get; private set; }
-        private int turno;
-        private Cor jogadorAtual;
+        public int turno {  get; private set; }
+        public Cor jogadorAtual { get; private set; }
         public bool termianda {  get; private set; }
 
         public PartidaDeXadrez()
@@ -29,6 +30,49 @@ namespace xadrez
 
         }
 
+        //Passagem de turno
+        public void realizaJogada(Posicao origem, Posicao destino)
+        {
+            executaMovimento(origem, destino);
+            turno ++;
+            mudaJogador();
+        }
+
+        //criando as Expection
+        public void validarPosicaoDeOrigem(Posicao pos)
+        {
+            if (tab.peca(pos) == null)
+            {
+                throw new TabuleiroException("Não existe peça na posição de origem escolhida!");
+            }
+            if (jogadorAtual != tab.peca(pos).cor)
+            {
+                throw new TabuleiroException("A peça de origem escolhida não é sua!");
+            }
+            if (!tab.peca(pos).existeMovimentosPossiveis())
+            {
+                throw new TabuleiroException("Não há movimentos possiveis para a peça de origem escolhida!");
+            }
+        }
+
+        public void validarPosicaoDeDestino(Posicao origem, Posicao destino)
+        {
+            if (!tab.peca(origem).podeMoverPara(destino))
+            {
+                throw new TabuleiroException("Posição de origem invalida!");
+            }
+        }
+        private void mudaJogador()
+        {
+            if (jogadorAtual == Cor.Branca)
+            {
+                jogadorAtual = Cor.Preta;
+            }
+            else
+            {
+                jogadorAtual = Cor.Branca;
+            }
+        }
         //colocando as peças de xadrez na classe PartidaDeXadrez e não na classe Program
         private void colocarPecas()
         {
