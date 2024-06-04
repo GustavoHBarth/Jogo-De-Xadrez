@@ -18,15 +18,11 @@ namespace xadrez_console
                     //colocado um try para validar as Exception
                     try
                     {
-                        //imprime o tabuleiro
                         Console.Clear();
-                        Tela.imprimirTabuleiro(partida.tab);
-                        Console.WriteLine();
-                        Console.WriteLine("Turno: " + partida.turno);
-                        Console.WriteLine("Aguardando jogada: " + partida.jogadorAtual);
+
+                        Tela.imprimirPartida(partida);
 
                         Console.WriteLine();
-                        //digita posição de origem
                         Console.Write("Origem: ");
                         Posicao origem = Tela.lerPosicaoXadrez().toPosicao();
                         partida.validarPosicaoDeOrigem(origem);
@@ -37,7 +33,6 @@ namespace xadrez_console
                         Tela.imprimirTabuleiro(partida.tab, posicoesPossiveis);
 
                         Console.WriteLine();
-                        //digita posição de destino
                         Console.Write("Destino: ");
                         Posicao destino = Tela.lerPosicaoXadrez().toPosicao();
                         partida.validarPosicaoDeDestino(origem, destino);

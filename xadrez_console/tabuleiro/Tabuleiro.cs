@@ -35,7 +35,7 @@ namespace tabuleiro
         }
         
         //dar a posição para a peça e testar se já existe alguma peça na posição
-        public void colcocarPeca(Peca p, Posicao pos) 
+        public void colocarPeca(Peca p, Posicao pos) 
         
         {
             if (existePeca(pos))
