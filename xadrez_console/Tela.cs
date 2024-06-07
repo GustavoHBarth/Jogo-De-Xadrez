@@ -14,6 +14,7 @@ namespace xadrez_console
             imprimirPecasCapturadas(partida);
             Console.WriteLine();
             Console.WriteLine("Turno: " + partida.turno);
+            //Adaptação na aplicação para msotrar o xequemate
             if (!partida.terminada)
             {
 
